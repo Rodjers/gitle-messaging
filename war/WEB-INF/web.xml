@@ -28,6 +28,16 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>DeleteTarget</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.DeleteTarget</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>DeleteTarget</servlet-name>
+    <url-pattern>/target/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>SendMessage</servlet-name>
     <servlet-class>no.gitlestadit.gitlemessaging.server.SendMessage</servlet-class>
   </servlet>

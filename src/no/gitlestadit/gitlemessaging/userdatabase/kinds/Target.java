@@ -33,5 +33,10 @@ public class Target {
 		this.platform = platform;
 		this.appId = appId;
 	}
+	
+	public App getApp(){
+		return this.appId;
+	}
+		
 }
 

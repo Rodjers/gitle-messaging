@@ -176,9 +176,9 @@
         </div>
       </li>
       <li class="form-line">
-        <label class="form-label-left" for="userId"> Username </label>
+        <label class="form-label-left" for="username"> Username </label>
         <div class="form-input">
-          <select name="userId">
+          <select name="username">
           <%
      		q = pm.newQuery(Target.class);
      		q.setResult("distinct username");
@@ -216,6 +216,45 @@
       </li>
     </ul>
   </div>
+</form>
+
+<form action="target/delete" method="post" name="deleteUser" accept-charset="utf-8">
+<div class="form-all">
+  <ul class="form-section">
+    <li class="form-input-wide">
+      <div class="form-header-group">
+        <h2 class="form-header">
+          Delete User
+        </h2>
+      </div>
+    </li>
+    <li class="form-line">
+      <label class="form-label-left" for="userId"> Username </label>
+      <div class="form-input">
+        <input type="text" class="form-textbox" name="username" size="20" />
+      </div>
+    </li>
+    <li class="form-line">
+      <label class="form-label-left" for="pushId"> Platform </label>
+      <div class="form-input">
+        <input type="text" class="form-textbox" name="platform" size="20" />
+      </div>
+    </li>
+    <li class="form-line">
+      <div class="form-input-wide">
+        <div style="margin-left:156px" class="form-buttons-wrapper">
+          <button type="submit" class="form-submit-button">
+            Register
+          </button>
+          &nbsp;
+          <button type="reset" class="form-submit-button">
+            Clear Form
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
 </form>
 
 

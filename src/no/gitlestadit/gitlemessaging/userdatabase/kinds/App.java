@@ -67,6 +67,10 @@ public class App {
 		}
 
 	}
+	
+	public void removeTarget(String username, String platform){
+		
+	}
 }
 
 
