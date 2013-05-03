@@ -40,7 +40,7 @@ public class SendMessage extends HttpServlet {
        		
        		Query q = pm.newQuery(Target.class);
        		q.setFilter("username == usernameParam && platform == platformParam");
-       		q.declareParameters("String namePlatform, String platformParam");
+       		q.declareParameters("String usernameParam, String platformParam");
        		q.setResult("pushId");
        		
        		List<String> pushId = (List<String>) q.execute(username, "gcm");
