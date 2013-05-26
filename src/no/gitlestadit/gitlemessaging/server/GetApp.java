@@ -22,7 +22,7 @@ import no.gitlestadit.gitlemessaging.userdatabase.kinds.App;
  * @author Oddgeir Gitlestad
  *
  */
-public class GetApps extends HttpServlet {
+public class GetApp extends HttpServlet {
 
 	/**
 	 * 
