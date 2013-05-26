@@ -5,7 +5,10 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import org.json.simple.JSONObject;
+
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +73,20 @@ public class App {
 	
 	public void removeTarget(String username, String platform){
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getJSONString(){
+		
+		
+		
+		JSONObject JSONApp = new JSONObject();
+			
+		JSONApp.put("Key", KeyFactory.keyToString(this.key));
+		JSONApp.put("Name", this.name);
+		JSONApp.put("Platform", this.platform);
+		
+		return JSONApp.toString();
 	}
 }
 

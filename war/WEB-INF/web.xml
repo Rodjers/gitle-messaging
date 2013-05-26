@@ -47,6 +47,36 @@
     <url-pattern>/target/send</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>GetTargetApp</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.GetTargetApp</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>GetTargetApp</servlet-name>
+    <url-pattern>/target/app</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetApps</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.GetApps</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>GetApps</servlet-name>
+    <url-pattern>/app/get</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetApps</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.GetApps</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>GetApps</servlet-name>
+    <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Gitle_Messaging.jsp</welcome-file>

@@ -30,11 +30,12 @@ public class SendMessage extends HttpServlet {
     		resp.getWriter().println("Method GET not supported. Use POST!");
         
 	}
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) 
+    @SuppressWarnings("unchecked")
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
     		throws IOException{
     	
     		String username = req.getParameter("username");
-    		String message = req.getParameter("message");
+    		//String message = req.getParameter("message");
     		
     		PersistenceManager pm = PMF.get().getPersistenceManager();
        		

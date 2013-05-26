@@ -1,11 +1,14 @@
 package no.gitlestadit.gitlemessaging.userdatabase.kinds;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+
+import org.json.simple.JSONObject;
 
 @PersistenceCapable
 public class Target {

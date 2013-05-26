@@ -8,12 +8,10 @@ import javax.jdo.Query;
 import javax.servlet.http.*;
 
 import no.gitlestadit.gitlemessaging.userdatabase.PMF;
-import no.gitlestadit.gitlemessaging.userdatabase.kinds.App;
 import no.gitlestadit.gitlemessaging.userdatabase.kinds.Target;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 /**
  * @author Oddgeir Gitlestad
