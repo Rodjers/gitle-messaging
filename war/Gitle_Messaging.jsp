@@ -4,8 +4,7 @@
 <!-- "Standards Mode". Replacing this declaration   -->
 <!-- with a "Quirks Mode" doctype is not supported. -->
 
-<%@ page 	import="no.gitlestadit.gitlemessaging.userdatabase.UserDatabaseHandle"
-			import="no.gitlestadit.gitlemessaging.userdatabase.kinds.App"
+<%@ page	import="no.gitlestadit.gitlemessaging.userdatabase.kinds.App"
 			import="no.gitlestadit.gitlemessaging.userdatabase.PMF"
 			import="no.gitlestadit.gitlemessaging.userdatabase.kinds.Target"
 			import="javax.jdo.PersistenceManager"

@@ -24,9 +24,6 @@ public class App {
 	private String name;
 	
 	@Persistent
-	private String platform;
-	
-	@Persistent
 	private String gcmSenderId;
 	
 	@Persistent
@@ -47,22 +44,21 @@ public class App {
 	@Persistent(mappedBy = "appId")
 	private List<Target> targets;
 
-	public App(String name, String platform){
+	public App(String name){
 		this.name = name;
-		this.platform = platform;
 		this.targets = new ArrayList<Target>();
 	}
 	
-	public String getKey(){
-		return String.valueOf(this.key.getId());
+	public Key getKey(){
+		return this.key;
+	}
+	
+	public String getKeyString(){
+		return KeyFactory.keyToString(this.key);
 	}
 	
 	public String getName(){
 		return this.name;
-	}
-	
-	public String getPlatform(){
-		return this.platform;
 	}
 	
 	public String getGcmSenderId(){
@@ -95,10 +91,6 @@ public class App {
 	
 	public void setName(String name){
 		this.name = name;
-	}
-	
-	public void setPlatform(String platform){
-		this.platform = platform;
 	}
 	
 	public void setGcmSenderId(String gcmSenderId){
@@ -150,7 +142,9 @@ public class App {
 			
 		JSONApp.put("Key", KeyFactory.keyToString(this.key));
 		JSONApp.put("Name", this.name);
-		JSONApp.put("Platform", this.platform);
+		JSONApp.put("GcmSenderId", this.gcmSenderId);
+		JSONApp.put("ApnSenderId", this.apnSenderId);
+		JSONApp.put("WnsSenderId", this.wnsSenderId);
 		
 		return JSONApp.toString();
 	}

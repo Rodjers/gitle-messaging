@@ -8,33 +8,33 @@
   <!-- Servlets -->
   
   <servlet>
-    <servlet-name>RegisterApp</servlet-name>
-    <servlet-class>no.gitlestadit.gitlemessaging.server.RegisterApp</servlet-class>
+    <servlet-name>RestApp</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.RestApp</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>RegisterApp</servlet-name>
-    <url-pattern>/app/register</url-pattern>
+    <servlet-name>RestApp</servlet-name>
+    <url-pattern>/app</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RestApp</servlet-name>
+    <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>RegisterTarget</servlet-name>
-    <servlet-class>no.gitlestadit.gitlemessaging.server.RegisterTarget</servlet-class>
+    <servlet-name>RestTarget</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.RestTarget</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>RegisterTarget</servlet-name>
-    <url-pattern>/target/register</url-pattern>
+    <servlet-name>RestTarget</servlet-name>
+    <url-pattern>/target</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>DeleteTarget</servlet-name>
-    <servlet-class>no.gitlestadit.gitlemessaging.server.DeleteTarget</servlet-class>
-  </servlet>
-  
   <servlet-mapping>
-    <servlet-name>DeleteTarget</servlet-name>
-    <url-pattern>/target/delete</url-pattern>
+    <servlet-name>RestTarget</servlet-name>
+    <url-pattern>/target/*</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -45,21 +45,6 @@
   <servlet-mapping>
     <servlet-name>SendMessage</servlet-name>
     <url-pattern>/target/send</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>GetApp</servlet-name>
-    <servlet-class>no.gitlestadit.gitlemessaging.server.GetApp</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>GetApp</servlet-name>
-    <url-pattern>/app/get</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>GetApp</servlet-name>
-    <url-pattern>/app/*</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

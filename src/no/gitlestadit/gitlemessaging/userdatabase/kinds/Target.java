@@ -37,8 +37,30 @@ public class Target {
 		this.appId = appId;
 	}
 	
+	public Key getKey(){
+		return this.key;
+	}
+	
+	public String getKeyString(){
+		return KeyFactory.keyToString(this.key);
+	}
+	
 	public App getApp(){
 		return this.appId;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getJSONString(){
+		
+		JSONObject JSONTarget = new JSONObject();
+			
+		JSONTarget.put("Key", KeyFactory.keyToString(this.key));
+		JSONTarget.put("PushId", this.pushId);
+		JSONTarget.put("Username", this.username);
+		JSONTarget.put("Platform", this.platform);
+		JSONTarget.put("App", this.appId.getKeyString());
+		
+		return JSONTarget.toString();
 	}
 		
 }
