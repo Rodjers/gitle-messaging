@@ -48,7 +48,15 @@ public class DatabaseHandle {
 		
 		Key k = KeyFactory.stringToKey(targetKey);
 		
-		Target target = pm.getObjectById(Target.class, k);
+		Target target = null;
+		
+		try {
+			target = pm.getObjectById(Target.class, k);
+		}
+		catch (Exception e){
+			
+		}
+		
 		
 		return target;
 	}
@@ -62,7 +70,15 @@ public class DatabaseHandle {
 		
 		Key k = KeyFactory.stringToKey(appKey);
 		
-		App app = pm.getObjectById(App.class, k);
+		App app = null;
+		
+		try{
+			app = pm.getObjectById(App.class, k);
+		}
+		catch (Exception e){
+			
+		}
+		
 		
 		return app;
 	}

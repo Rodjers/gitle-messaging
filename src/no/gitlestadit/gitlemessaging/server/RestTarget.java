@@ -29,7 +29,13 @@ public class RestTarget extends HttpServlet {
 		
 		Target target = db.getTarget(targetKey);
 		
-		resp.getWriter().println(target.getJSONString());
+		if (target != null){
+			resp.getWriter().println(target.getJSONString());
+		}
+		else {
+			resp.getWriter().println("Target not found");
+		}
+		
         
 	}
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{

@@ -36,7 +36,12 @@ public class RestApp extends HttpServlet {
 		
 		App app = db.getApp(appKey);
 		
-		resp.getWriter().println(app.getJSONString());
+		if(app != null){
+			resp.getWriter().println(app.getJSONString());
+		}
+		else {
+			resp.getWriter().println("App not found");
+		}
         
 	}
 	
