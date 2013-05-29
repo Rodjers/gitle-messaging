@@ -27,6 +27,8 @@ public class RestSend extends HttpServlet {
    		String appKey = req.getParameter("appKey");
    		
    		resp.getWriter().println("Message sent to all users of: " + appKey);
+   		
+   		//TODO Add actual send mechanism
     }
     
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException{
