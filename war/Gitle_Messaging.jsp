@@ -5,13 +5,14 @@
 <!-- with a "Quirks Mode" doctype is not supported. -->
 
 <%@ page	import="no.gitlestadit.gitlemessaging.userdatabase.kinds.App"
-			import="no.gitlestadit.gitlemessaging.userdatabase.PMF"
+			import="no.gitlestadit.gitlemessaging.userdatabase.DatabaseHandle"
 			import="no.gitlestadit.gitlemessaging.userdatabase.kinds.Target"
 			import="javax.jdo.PersistenceManager"
 			import="javax.jdo.Query"
 			import="java.util.ArrayList"
 			import="java.util.Iterator"
-			import="java.util.List"%>
+			import="java.util.List"
+			import="java.util.Set"%>
 
 <html>
   <head>
@@ -61,7 +62,7 @@
 
     <h1>Gitle Messaging</h1>
     
-    <form action="app/register" method="post" name="sendApp" accept-charset="utf-8">
+    <form action="app" method="post" name="registerApp" accept-charset="utf-8">
     <div class="form-all">
       <ul class="form-section">
         <li class="form-input-wide">
@@ -82,8 +83,8 @@
           <div class="form-input">
             <select name="platform">
             <option>gcm</option>
-            <option>ios</option>
-            <option>windows8</option>
+            <option>apn</option>
+            <option>wns</option>
             </select>
           </div>
         </li>
@@ -103,68 +104,8 @@
       </ul>
     </div>
     </form>
-
-    <form action="target/register" method="post" name="registerApp" accept-charset="utf-8">
-    <div class="form-all">
-      <ul class="form-section">
-        <li class="form-input-wide">
-          <div class="form-header-group">
-            <h2 class="form-header">
-              Register User
-            </h2>
-          </div>
-        </li>
-        <li class="form-line">
-          <label class="form-label-left" for="userId"> Username </label>
-          <div class="form-input">
-            <input type="text" class="form-textbox" name="userId" size="20" />
-          </div>
-        </li>
-        <li class="form-line">
-          <label class="form-label-left" for="pushId"> PushId </label>
-          <div class="form-input">
-            <input type="text" class="form-textbox" name="pushId" size="20" />
-          </div>
-        </li>
-        <li class="form-line">
-          <label class="form-label-left" for="appName"> App Name </label>
-          <div class="form-input">
-          <select name="appName">
-          <%
-          PersistenceManager pm = PMF.get().getPersistenceManager();
-     		
-     		Query q = pm.newQuery(App.class);
-     		
-     		try {
-     		  List<App> results = (List<App>) q.execute();
-     		  for (App r : results){
-     			 out.println("<option value=\"" + r.getKey() + "\">" + r.getName() + " (" + r.getPlatform() + ")</option>");
-     		  }
-     		} finally {
-     		  q.closeAll();
-     		}
-          %>
-          </select>
-          </div>
-        </li>
-        <li class="form-line">
-          <div class="form-input-wide">
-            <div style="margin-left:156px" class="form-buttons-wrapper">
-              <button type="submit" class="form-submit-button">
-                Register
-              </button>
-              &nbsp;
-              <button type="reset" class="form-submit-button">
-                Clear Form
-              </button>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </form>
-  
-  <form action="target/send" method="post" name="sendApp" accept-charset="utf-8">
+    
+    <form action="send" method="post" name="sendApp" accept-charset="utf-8">
   <div class="form-all">
     <ul class="form-section">
       <li class="form-input-wide">
@@ -175,21 +116,18 @@
         </div>
       </li>
       <li class="form-line">
-        <label class="form-label-left" for="username"> Username </label>
+        <label class="form-label-left" for="appKey"> AppKey </label>
         <div class="form-input">
-          <select name="username">
+          <select name="appKey">
           <%
-     		q = pm.newQuery(Target.class);
-     		q.setResult("distinct username");
-     		
-     		try {
-     		  List<String> results = (List<String>) q.execute();
-     		  for (String r : results){
-     			 out.println("<option>" + r + "</option>");
-     		  }
-     		} finally {
-     		  q.closeAll();
-     		}
+          
+          DatabaseHandle db = new DatabaseHandle();
+          
+          List<App> apps = db.getApps();
+          
+          for (App a : apps){
+          	out.println("<option value=\"" + a.getKeyString() + "\">" + a.getName() + "</option>");
+          }
           %>
           </select>
         </div>
@@ -216,46 +154,6 @@
     </ul>
   </div>
 </form>
-
-<form action="target/delete" method="post" name="deleteUser" accept-charset="utf-8">
-<div class="form-all">
-  <ul class="form-section">
-    <li class="form-input-wide">
-      <div class="form-header-group">
-        <h2 class="form-header">
-          Delete User
-        </h2>
-      </div>
-    </li>
-    <li class="form-line">
-      <label class="form-label-left" for="userId"> Username </label>
-      <div class="form-input">
-        <input type="text" class="form-textbox" name="username" size="20" />
-      </div>
-    </li>
-    <li class="form-line">
-      <label class="form-label-left" for="pushId"> Platform </label>
-      <div class="form-input">
-        <input type="text" class="form-textbox" name="platform" size="20" />
-      </div>
-    </li>
-    <li class="form-line">
-      <div class="form-input-wide">
-        <div style="margin-left:156px" class="form-buttons-wrapper">
-          <button type="submit" class="form-submit-button">
-            Register
-          </button>
-          &nbsp;
-          <button type="reset" class="form-submit-button">
-            Clear Form
-          </button>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-</form>
-
 
   </body>
 </html>

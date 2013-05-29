@@ -38,13 +38,13 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>SendMessage</servlet-name>
-    <servlet-class>no.gitlestadit.gitlemessaging.server.SendMessage</servlet-class>
+    <servlet-name>RestSend</servlet-name>
+    <servlet-class>no.gitlestadit.gitlemessaging.server.RestSend</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>SendMessage</servlet-name>
-    <url-pattern>/target/send</url-pattern>
+    <servlet-name>RestSend</servlet-name>
+    <url-pattern>/send</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

@@ -3,7 +3,10 @@
  */
 package no.gitlestadit.gitlemessaging.userdatabase;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 
 import no.gitlestadit.gitlemessaging.userdatabase.kinds.App;
 import no.gitlestadit.gitlemessaging.userdatabase.kinds.Target;
@@ -81,6 +84,18 @@ public class DatabaseHandle {
 		
 		
 		return app;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<App> getApps(){
+		
+		List<App> apps = null;
+		
+		Query q = pm.newQuery(App.class);
+		
+		apps = (List<App>) q.execute();
+		
+		return apps;
 	}
 	
 	public String registerApp(String appName){
