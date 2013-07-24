@@ -45,6 +45,10 @@ public class Target {
 		return KeyFactory.keyToString(this.key);
 	}
 	
+	public String getpushId(){
+		return this.pushId;
+	}
+	
 	public App getApp(){
 		return this.appId;
 	}

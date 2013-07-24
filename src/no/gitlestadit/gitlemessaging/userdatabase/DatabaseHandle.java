@@ -30,14 +30,24 @@ public class DatabaseHandle {
 	public String registerTarget(String pushId, String appKey, String username, String platform){
 		
 		String targetKey = null;
+		Target target = null;
 		
 		try {
+			  target = getTarget(pushId, appKey);
+			  
+			  if(target == null){
 	   		  App app = pm.getObjectById(App.class, appKey);
-	   		  Target target = new Target(pushId, username, platform, app);
+	   		  target = new Target(pushId, username, platform, app);
 	   		 // targetKey = target.getKeyString();
 	   		  //TODO Get the target id after adding
 	   		  app.addTarget(target);
 	   		  pm.makePersistent(app);
+	   		  targetKey = getTarget(pushId, appKey).getKeyString();
+			  }
+			  else {
+				  targetKey = target.getKeyString();
+			  }
+			  
 	   		} finally {
 	   		  pm.close();
 	   		}
@@ -47,14 +57,45 @@ public class DatabaseHandle {
 	
 	public Target getTarget(String targetKey){
 		
-		//TODO Add throws entity not found thingy
+		Key k = null;
 		
-		Key k = KeyFactory.stringToKey(targetKey);
-		
+		try {
+			k = KeyFactory.stringToKey(targetKey);
+		}
+		catch (IllegalArgumentException e){
+			return null;
+		}
 		Target target = null;
 		
 		try {
 			target = pm.getObjectById(Target.class, k);
+		}
+		catch (Exception e){
+			
+		}
+		
+		
+		return target;
+	}
+	
+public Target getTarget(String pushId, String appKey){
+		
+		//TODO Add throws entity not found thingy
+		
+		Key k = KeyFactory.stringToKey(appKey);
+		
+		Target target = null;
+		App app = null;
+		
+		try {
+			app = pm.getObjectById(App.class, k);
+			List<Target> targets = app.getTargets();
+			
+			for (Target t : targets){
+				if(t.getpushId().equals(pushId)){
+					target = t;
+				}
+			}
 		}
 		catch (Exception e){
 			
@@ -71,7 +112,14 @@ public class DatabaseHandle {
 	
 	public App getApp(String appKey){
 		
-		Key k = KeyFactory.stringToKey(appKey);
+		Key k = null;
+		
+		try {
+			k = KeyFactory.stringToKey(appKey);
+		}
+		catch (IllegalArgumentException e){
+			return null;
+		}
 		
 		App app = null;
 		
@@ -83,6 +131,11 @@ public class DatabaseHandle {
 		}
 		
 		
+		return app;
+	}
+	
+	public App getAppByName(String name){
+		App app = null;
 		return app;
 	}
 	
@@ -98,15 +151,19 @@ public class DatabaseHandle {
 		return apps;
 	}
 	
-	public String registerApp(String appName){
+	public App registerApp(String appName){
 		
-		String appKey = null;
-		
+			
 		App app = new App(appName);
 		
-		pm.makePersistent(app);
+		App retApp = pm.makePersistent(app);
 		
-		return appKey;
+		return retApp;
+	}
+	
+public void updateApp(App app){
+		
+		pm.makePersistent(app);
 	}
 	
 public void deleteApp(String appKey){

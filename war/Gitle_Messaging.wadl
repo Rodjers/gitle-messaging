@@ -1,0 +1,80 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://wadl.dev.java.net/2009/02">
+ 
+   <resources base="http://gitlestad.net:8000/"> 
+     <resource path="app"> 
+		<resource path="{appKey}"> 
+	   <param name="appKey" type="xsd:string" style="template"/>
+       <method name="GET" id="getApp"> 
+         <request/>
+         <response status="200"> 
+           <representation mediaType="application/json"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method>
+	   <method name="DELETE" id="deleteApp"> 
+         <request/>
+         <response status="200"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method>
+     </resource>
+       <method name="PUT" id="registerApp"> 
+         <request> 
+           <param name="name" type="xsd:string" 
+             style="query" required="true"/> 
+         </request> 
+         <response status="200"> 
+           <representation mediaType="application/json"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method> 
+     </resource>
+	 <resource path="target"> 
+	 <resource path="{targetKey}"> 
+	 <param name="targetKey" type="xsd:string" style="template"/>
+       <method name="GET" id="getTarget"> 
+         <request/>
+         <response status="200"> 
+           <representation mediaType="application/json"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method>
+	   <method name="DELETE" id="deleteTarget"> 
+         <request/>
+         <response status="200"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method>
+     </resource> 
+       <method name="PUT" id="registerTarget"> 
+         <request> 
+           <param name="username" type="xsd:string" style="query" required="false"/>
+		   <param name="upshId" type="xsd:string" style="query" required="true"/>
+		   <param name="appKey" type="xsd:string" style="query" required="true"/>
+		   <param name="platform" type="xsd:string" style="query" required="true"/>
+         </request> 
+         <response status="200"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method> 
+     </resource>
+   </resources>
+ </application>

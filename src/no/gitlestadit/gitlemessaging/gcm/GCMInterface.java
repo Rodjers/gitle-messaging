@@ -14,20 +14,21 @@ public class GCMInterface {
 		
 	}
 	
-	public String sendMessage(String pushId){
+	public String sendMessage(String pushId, String message){
 		
 		sender = new Sender("AIzaSyAgjn1nSEHbtoSLqt68RBQzFHBcUZb2SVA");
 		
 		Result result = null;
 		
-		Message message = new Message.Builder()
+		Message gcmMessage = new Message.Builder()
 	    .collapseKey("key")
 	    .timeToLive(3)
 	    .delayWhileIdle(true)
+	    .addData("message", message)
 	    .build();
 		
 		try {
-			result = sender.send(message, pushId, 3);
+			result = sender.send(gcmMessage, pushId, 3);
 			if (result.getMessageId() != null){
 				return "Message sent to" + result.getMessageId();
 			}
