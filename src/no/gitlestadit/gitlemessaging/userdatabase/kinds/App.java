@@ -129,19 +129,6 @@ public class App {
 
 	}
 	
-public void updateTarget(Target oldTarget, Target newTarget){
-		
-		if (this.targets == null){
-			this.targets = new ArrayList<Target>();
-			this.targets.add(newTarget);
-		}
-		else {
-			this.targets.remove(oldTarget);
-			this.targets.add(newTarget);
-		}
-
-	}
-	
 	public void removeTarget(String username, String platform){
 		
 	}

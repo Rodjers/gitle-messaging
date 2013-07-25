@@ -27,7 +27,7 @@ public class DatabaseHandle {
 		
 	}
 	
-	public String registerTarget(String pushId, String appKey, String username, String platform){
+	public Target registerTarget(String pushId, String appKey, String username, String platform){
 		
 		String targetKey = null;
 		Target target = null;
@@ -42,17 +42,14 @@ public class DatabaseHandle {
 	   		  //TODO Get the target id after adding
 	   		  app.addTarget(target);
 	   		  pm.makePersistent(app);
-	   		  targetKey = getTarget(pushId, appKey).getKeyString();
-			  }
-			  else {
-				  targetKey = target.getKeyString();
+	   		  target = getTarget(pushId, appKey);
 			  }
 			  
 	   		} finally {
 	   		  pm.close();
 	   		}
 		
-		return targetKey;
+		return target;
 	}
 	
 	public Target getTarget(String targetKey){
@@ -92,8 +89,10 @@ public Target getTarget(String pushId, String appKey){
 			List<Target> targets = app.getTargets();
 			
 			for (Target t : targets){
-				if(t.getpushId().equals(pushId)){
+				if(t.getpushId() != null){
+					if(t.getpushId().equals(pushId)){
 					target = t;
+					}
 				}
 			}
 		}
@@ -166,13 +165,16 @@ public void updateApp(App app){
 		pm.makePersistent(app);
 	}
 
-public void updateTarget(Target target, Target newTarget){
+public Target updateTarget(Target target, String username, String pushId, String platform){
 	
 	App app = this.getApp(target.getApp().getKeyString());
 	
-	app.updateTarget(target, newTarget);
+	target.setPlatform(platform);
+	target.setpushId(pushId);
+	target.setUsername(username);
 	
 	pm.makePersistent(app);
+	return target;
 }
 	
 public void deleteApp(String appKey){

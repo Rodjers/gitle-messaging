@@ -49,9 +49,15 @@ public class RestTarget extends HttpServlet {
    		
    		DatabaseHandle db = new DatabaseHandle();
    		
-   		String targetKey = db.registerTarget(pushId, appKey, username, platform); 
+   		Target target = db.getTarget(pushId, appKey);
    		
-   		resp.getWriter().println(targetKey);
+   		if(target == null){
+   		
+   			target = db.registerTarget(pushId, appKey, username, platform); 
+   		}
+   		
+   		resp.setContentType("application/json");
+   		resp.getWriter().println(target.getJSONString());
     }
     
 public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
@@ -67,13 +73,7 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOEx
    		
    		Target target = db.getTarget(targetKey);
    		
-   		Target newTarget = target;
-   		
-   		target.setPlatform(platform);
-   		target.setpushId(pushId);
-   		target.setUsername(username);
-   		
-   		db.updateTarget(target, newTarget);
+   		target = db.updateTarget(target, username, pushId, platform);
    		
    		resp.setContentType("application/json");
    		
