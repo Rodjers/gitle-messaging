@@ -165,6 +165,15 @@ public void updateApp(App app){
 		
 		pm.makePersistent(app);
 	}
+
+public void updateTarget(Target target, Target newTarget){
+	
+	App app = this.getApp(target.getApp().getKeyString());
+	
+	app.updateTarget(target, newTarget);
+	
+	pm.makePersistent(app);
+}
 	
 public void deleteApp(String appKey){
 		

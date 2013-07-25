@@ -54,6 +54,32 @@ public class RestTarget extends HttpServlet {
    		resp.getWriter().println(targetKey);
     }
     
+public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    	
+		StringBuffer url = req.getRequestURL();
+	
+		String username = req.getParameter("username");
+		String pushId = req.getParameter("pushId");
+		String targetKey = url.substring(url.lastIndexOf("/")+1);
+   		String platform = req.getParameter("platform");
+   		
+   		DatabaseHandle db = new DatabaseHandle();
+   		
+   		Target target = db.getTarget(targetKey);
+   		
+   		Target newTarget = target;
+   		
+   		target.setPlatform(platform);
+   		target.setpushId(pushId);
+   		target.setUsername(username);
+   		
+   		db.updateTarget(target, newTarget);
+   		
+   		resp.setContentType("application/json");
+   		
+   		resp.getWriter().println(target.getJSONString());
+    }
+    
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException{
     	
 		StringBuffer url = req.getRequestURL();

@@ -60,11 +60,24 @@
            <representation mediaType="text/plain"/> 
          </response> 
        </method>
+       <method name="POST" id="updateTarget"> 
+         <request> 
+           <param name="username" type="xsd:string" style="query" required="false"/>
+		   <param name="pushId" type="xsd:string" style="query" required="true"/>
+		   <param name="platform" type="xsd:string" style="query" required="true"/>
+         </request> 
+         <response status="200"> 
+           <representation mediaType="application/json"/> 
+         </response> 
+         <response status="500"> 
+           <representation mediaType="text/plain"/> 
+         </response> 
+       </method> 
      </resource> 
        <method name="PUT" id="registerTarget"> 
          <request> 
            <param name="username" type="xsd:string" style="query" required="false"/>
-		   <param name="upshId" type="xsd:string" style="query" required="true"/>
+		   <param name="pushId" type="xsd:string" style="query" required="true"/>
 		   <param name="appKey" type="xsd:string" style="query" required="true"/>
 		   <param name="platform" type="xsd:string" style="query" required="true"/>
          </request> 

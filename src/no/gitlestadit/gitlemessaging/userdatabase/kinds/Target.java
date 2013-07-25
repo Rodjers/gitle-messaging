@@ -66,6 +66,21 @@ public class Target {
 		
 		return JSONTarget.toString();
 	}
+	
+	public void setpushId(String pushId){
+		
+		this.pushId = pushId;
+	}
+	
+	public void setUsername(String username){
+		
+		this.username = username;
+	}
+
+	public void setPlatform(String platform){
+	
+	this.platform = platform;
+}
 		
 }
 

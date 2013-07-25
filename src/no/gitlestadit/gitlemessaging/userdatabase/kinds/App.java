@@ -124,7 +124,20 @@ public class App {
 			this.targets.add(target);
 		}
 		else {
-			this.targets.add(target);			
+			this.targets.add(target);
+		}
+
+	}
+	
+public void updateTarget(Target oldTarget, Target newTarget){
+		
+		if (this.targets == null){
+			this.targets = new ArrayList<Target>();
+			this.targets.add(newTarget);
+		}
+		else {
+			this.targets.remove(oldTarget);
+			this.targets.add(newTarget);
 		}
 
 	}
